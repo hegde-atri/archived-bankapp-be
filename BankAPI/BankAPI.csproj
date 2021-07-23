@@ -4,4 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Customer" />
+    <Folder Include="Controllers\Manager" />
+    <Folder Include="Controllers\Officer" />
+    <Folder Include="Controllers\Teller" />
+  </ItemGroup>
+
 </Project>
