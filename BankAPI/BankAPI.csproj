@@ -5,10 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Customer" />
     <Folder Include="Controllers\Manager" />
     <Folder Include="Controllers\Officer" />
     <Folder Include="Controllers\Teller" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bank.Data\Bank.Data.csproj" />
   </ItemGroup>
 
 </Project>
