@@ -1,24 +1,36 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Bank.Data.Entities
+namespace BankAPI.Models
 {
-  public class Notification
+  public class NotificationModel
   {
+    [Required]
     public int NotificationId { get; set; }
+    
+    [Required]
     public int CustomerId { get; set; }
+    
+    
     public string Email { get; set; }
+    
+    [Required]
     public string Phone { get; set; }
-    // Preference is whether they want the notification to email, phone or both.
+    
+    [Required]
     public string Preference { get; set; }
     
-    // Type indicates whether the notificationId set for the customer
-    // is primary,secondary or tertiary.
-    public string Type { get; set; }
-    // This is for whether they want updates sent to this notification.
+    [Required]
     public string Status { get; set; }
+    
+    [Required]
     public string CreatedBy { get; set; }
+    
+    [Required]
     public DateTime CreatedDate { get; set; }
+    [Required]
     public string ModifiedBy { get; set; }
+    [Required]
     public DateTime ModifiedDate { get; set; }
     
   }

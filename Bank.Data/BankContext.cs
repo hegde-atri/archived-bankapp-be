@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Dynamic;
 using Bank.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,8 +15,14 @@ namespace Bank.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer();
+            optionsBuilder.UseSqlServer(
+                "Data Source= (localdb)\\MSSQLLocalDB; Initial Catalog=BankAppDb");
             base.OnConfiguring(optionsBuilder);
+        }
+
+        public BankContext(DbContextOptions<BankContext> options) : base(options)
+        {
+            
         }
     }
 }

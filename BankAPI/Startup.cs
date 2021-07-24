@@ -8,7 +8,11 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Bank.Data;
+using BankAPI.Controllers.Customer;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankAPI
 {
@@ -26,6 +30,13 @@ namespace BankAPI
         {
 
             services.AddControllers();
+            
+            services.AddDbContext<BankContext>(opt =>
+                opt.UseSqlServer(Configuration.GetConnectionString("DeveloperDb"))
+                    .EnableSensitiveDataLogging()
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
