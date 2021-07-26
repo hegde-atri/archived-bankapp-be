@@ -13,25 +13,27 @@ namespace BankAPI.Controllers.Customer
     void Delete<T>(T entity) where T : class;//   must be an entity that I've made (user-defined class 
     Task<bool> SaveChangesAsync();//              with parameter-less constructor). Adding a generic type constraint
 
+    void Update<T>(T entity) where T : class;
+
     // Regarding Accounts
-    Task<Account> GetAccountAsync(int accountId, int customerId, bool onlyActive = true);
+    Task<Account> GetAccountAsync(int accountId);
     Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive = true);
 
     // Regarding Addresses
-    Task<Account> GetAddressAsync(int addressId, int customerId, bool onlyActive = true);
-    Task<Account[]> GetAllAddressesAsync(int customerId, bool onlyActive = true);
+    Task<Address> GetAddressAsync(int addressId, bool onlyActive = true);
+    Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive = true);
     
     // Regarding Notifications
     Task<Notification> GetNotificationAsync(string status, int customerId, bool onlyActive = true);
     Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive = true);
     
     // Regarding Payees
-    Task<Account> GetPayeeAsync(string name, int customerId, bool onlyActive = true);
-    Task<Account[]> GetAllPayeesAsync(int customerId, bool onlyActive = true);
+    Task<Payee> GetPayeeAsync(int payeeId);
+    Task<Payee[]> GetAllPayeesAsync(int customerId);
     
     // Regarding Transactions
-    Task<Transaction> GetTransactionAsync();
-    Task<Transaction> GetTransactionsForAccountsAsync(Account[] accounts);
+    Task<Transaction> GetTransactionAsync(int transactionId);
+    Task<Transaction[]> GetAllTransactionsAsync(int accountId);
 
   }
 }
