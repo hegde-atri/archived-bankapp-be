@@ -1,4 +1,5 @@
 ﻿using System.Dynamic;
+using System.Linq;
 using Bank.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,11 @@ namespace Bank.Data
         public BankContext(DbContextOptions<BankContext> options) : base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+
         }
     }
 }

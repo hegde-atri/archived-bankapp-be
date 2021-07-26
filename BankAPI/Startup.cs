@@ -33,9 +33,10 @@ namespace BankAPI
             
             services.AddDbContext<BankContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DeveloperDb"))
-                    .EnableSensitiveDataLogging()
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
+                    .EnableSensitiveDataLogging());
 
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
