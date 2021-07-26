@@ -5,10 +5,8 @@ namespace BankAPI.Models
 {
   public class AddressModel
   {
-    [Required]
     public int AddressId { get; set; }
     
-    [Required]
     public int CustomerId { get; set; }
     
     [Required]

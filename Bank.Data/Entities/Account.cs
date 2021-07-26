@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Data.Entities
 {
@@ -12,6 +13,7 @@ namespace Bank.Data.Entities
     public string AccountNumber { get; set; }
     public string Sortcode { get; set; }
     public string Type { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
     public decimal Balance { get; set; }
     public string Status { get; set; }
     public DateTime OpenDate { get; set; }

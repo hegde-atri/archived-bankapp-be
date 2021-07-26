@@ -8,6 +8,7 @@ namespace BankAPI.Models
   public class AccountModel
   {
     //These are the attributes of the Account Table.
+    [Required]
     public int AccountId { get; set; }
     
     //Each account belongs to a single customer. [CustomerId is a foreign key]
