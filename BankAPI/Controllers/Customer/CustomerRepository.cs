@@ -62,7 +62,7 @@ namespace BankAPI.Controllers.Customer
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive = true)
+    public async Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive)
     {
       _logger.LogInformation($"Getting all accounts of {customerId}");
       IQueryable<Account> query = _context.Accounts
@@ -76,7 +76,7 @@ namespace BankAPI.Controllers.Customer
       return await query.ToArrayAsync();
     }
 
-    public async Task<Address> GetAddressAsync(int addressId, bool onlyActive = true)
+    public async Task<Address> GetAddressAsync(int addressId, bool onlyActive)
     {
       _logger.LogInformation($"Getting address with id {addressId}.");
 
@@ -91,7 +91,7 @@ namespace BankAPI.Controllers.Customer
 
     }
 
-    public async Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive = true)
+    public async Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive)
     {
       _logger.LogInformation($"Getting all address details of customer {customerId}.");
       IQueryable<Address> query = _context.Addresses
@@ -105,7 +105,7 @@ namespace BankAPI.Controllers.Customer
       return await query.ToArrayAsync();
     }
 
-    public async Task<Notification> GetNotificationAsync(string type, int customerId, bool onlyActive = true)
+    public async Task<Notification> GetNotificationAsync(string type, int customerId, bool onlyActive)
     {
       _logger.LogInformation($"Getting notification details of customer {customerId} with type {type}.");
 
@@ -120,7 +120,7 @@ namespace BankAPI.Controllers.Customer
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive = true)
+    public async Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive)
     {
       _logger.LogInformation($"Getting notification details of customer {customerId}.");
 
@@ -161,11 +161,11 @@ namespace BankAPI.Controllers.Customer
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<Transaction[]> GetAllTransactionsAsync(int accountId)
+    public async Task<Transaction[]> GetAllTransactionsAsync(string accountNumber)
     {
-      _logger.LogInformation($"Getting all transactions for account {accountId}");
+      _logger.LogInformation($"Getting all transactions for account {accountNumber}");
       IQueryable<Transaction> query = _context.Transactions
-        .Where(t => t.AccountId == accountId);
+        .Where(t => t.AccountNumber == accountNumber);
 
       return await query.ToArrayAsync();
     }

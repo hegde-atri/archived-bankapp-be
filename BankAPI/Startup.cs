@@ -35,6 +35,10 @@ namespace BankAPI
                 opt.UseSqlServer(Configuration.GetConnectionString("DeveloperDb"))
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
                     .EnableSensitiveDataLogging());
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

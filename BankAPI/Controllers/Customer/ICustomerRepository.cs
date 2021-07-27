@@ -17,15 +17,15 @@ namespace BankAPI.Controllers.Customer
 
     // Regarding Accounts
     Task<Account> GetAccountAsync(int accountId);
-    Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive = true);
+    Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive);
 
     // Regarding Addresses
-    Task<Address> GetAddressAsync(int addressId, bool onlyActive = true);
-    Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive = true);
+    Task<Address> GetAddressAsync(int addressId, bool onlyActive);
+    Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive);
     
     // Regarding Notifications
-    Task<Notification> GetNotificationAsync(string status, int customerId, bool onlyActive = true);
-    Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive = true);
+    Task<Notification> GetNotificationAsync(string status, int customerId, bool onlyActive);
+    Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive);
     
     // Regarding Payees
     Task<Payee> GetPayeeAsync(int payeeId);
@@ -33,7 +33,7 @@ namespace BankAPI.Controllers.Customer
     
     // Regarding Transactions
     Task<Transaction> GetTransactionAsync(int transactionId);
-    Task<Transaction[]> GetAllTransactionsAsync(int accountId);
+    Task<Transaction[]> GetAllTransactionsAsync(string accountNumber);
 
   }
 }
