@@ -3,17 +3,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.Data.Entities;
 using BankAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace BankAPI.Controllers.Customer
 {
-  
-  [Route("api/[controller]")]
   [ApiController]
+  [Route("api/customer/[controller]")]
   public class AddressController: ControllerBase
   {
     private readonly ICustomerRepository _repository;
@@ -52,45 +50,61 @@ namespace BankAPI.Controllers.Customer
       catch (Exception e)
       {
         // _logger.LogWarning("Failed to port address with error: " + e);
-        return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
     }
 
     [HttpGet("{addressId}")]
-    public async Task<ActionResult<AddressModel>> Get(int addressId)
+    public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
     {
       try
       {
-        var result = await _repository.GetAddressAsync(addressId);
+        var result = await _repository.GetAddressAsync(addressId, onlyActive);
         if (result == null) return BadRequest();
         return _mapper.Map<AddressModel>(result);
       }
       catch (Exception e)
       {
-        // _logger.LogWarning("Failed to get address with error: " + e);
-        return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
+      }
+    }
+
+    [HttpGet("all")]
+    public async Task<ActionResult<AddressModel[]>> Get(bool onlyActive = true)
+    {
+      // TODO customerId must be taken from the client
+      int customerId = 1;
+      try
+      {
+        var results = await _repository.GetAllAddressesAsync(customerId, onlyActive);
+        
+        return _mapper.Map<AddressModel[]>(results);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
     }
 
     [HttpPut("{addressId}")]
-    public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model)
+    public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model, bool onlyActive)
     {
       try
       {
-        var old = await _repository.GetAddressAsync(addressId, false);
+        var old = await _repository.GetAddressAsync(addressId, onlyActive);
         if (old == null) return BadRequest("old address not found");
 
         _mapper.Map(model, old);
-        // _repository.Update(old);
+        old.AddressId = addressId;
         if (await _repository.SaveChangesAsync()) return _mapper.Map<AddressModel>(old);
 
       }
       catch (Exception e)
       {
-        return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
 
-      return BadRequest("Give up and move on");
+      return BadRequest();
     }
   }
 }
