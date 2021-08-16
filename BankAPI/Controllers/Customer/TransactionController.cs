@@ -11,7 +11,7 @@ namespace BankAPI.Controllers.Customer
 {
   [ApiController]
   [Route("api/customer/[controller]")]
-  public class TransactionController: ControllerBase
+  public class TransactionController : ControllerBase
   {
     private readonly ICustomerRepository _repository;
     private readonly IMapper _mapper;
@@ -32,7 +32,7 @@ namespace BankAPI.Controllers.Customer
       {
         var result = await _repository.GetTransactionAsync(transactionId);
         if (result == null) return BadRequest();
-        
+
         return _mapper.Map<TransactionModel>(result);
       }
       catch (Exception e)

@@ -13,6 +13,7 @@ namespace BankAPI.Controllers.Customer
     void Delete<T>(T entity) where T : class;//   must be an entity that I've made (user-defined class 
     Task<bool> SaveChangesAsync();//              with parameter-less constructor). Adding a generic type constraint
 
+    // Update might be needed if I decide not to use Tracking in Entity Framework.
     void Update<T>(T entity) where T : class;
 
     // Regarding Accounts
