@@ -9,6 +9,7 @@ namespace BankAPI.Controllers.Customer
     public CustomerProfile()
     {
       // When a EntityModel object is being mapped to a Entity object which will be sent a database, we do not map any PK's or FK's.
+      // This is to avoid accidently changing these values.
       // That is what opt ignore does. 
       // Bank.Data/Entities/Account.cs is an entity
       // BankAPI/Models/AccountModel.cs is a entityModel

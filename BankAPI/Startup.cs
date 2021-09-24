@@ -12,6 +12,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Bank.Data;
 using BankAPI.Controllers.Customer;
+using BankAPI.Controllers.Manager;
+using BankAPI.Controllers.Officer;
+using BankAPI.Controllers.Teller;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankAPI
@@ -31,16 +34,27 @@ namespace BankAPI
 
             services.AddControllers();
             
+            /* Here we register our DBContext, which is BankContext, and we are getting the connection string from
+             appsettings.json under the parent category of ConnectionStrings.
+             */
             services.AddDbContext<BankContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DeveloperDb"))
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
                     .EnableSensitiveDataLogging());
+            
+            // Here we configure to ignore the infinite loops of relation/reference created by ef core
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
 
+            // Allows us to use ICustomer/Customer Repository as a service
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IManagerRepository, ManagerRepository>();
+            services.AddScoped<IOfficerRepository, OfficerRepository>();
+            services.AddScoped<ITellerRepository, TellerRepository>();
+            
+            // This allows us to use the mapper which can convert Objects to model Objects and vice versa.
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 

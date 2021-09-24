@@ -44,6 +44,9 @@ namespace BankAPI.Controllers.Customer
     [HttpGet("all")]
     public async Task<ActionResult<TransactionModel[]>> Get(string accountNumber)
     {
+      /* TODO
+       we need to get get all the transaction related to an account.
+       */
       try
       {
         // var results = 

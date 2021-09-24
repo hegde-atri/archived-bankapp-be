@@ -25,7 +25,7 @@ namespace BankAPI.Controllers.Customer
     Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive);
     
     // Regarding Notifications
-    Task<Notification> GetNotificationAsync(string status, int customerId, bool onlyActive);
+    Task<Notification> GetNotificationAsync(int notificationId, int customerId, bool onlyActive);
     Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive);
     
     // Regarding Payees

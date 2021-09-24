@@ -22,11 +22,19 @@ namespace BankAPI.Controllers.Teller
       _mapper = mapper;
     }
 
+    // This will post a debit or credit transaction note. We need only 1 transaction note since they are either
+    // withdrawing and depositing with only one account.
+    
     [HttpPost]
     public async Task<ActionResult<TransactionModel>> Post(TransactionModel model)
     {
       try
       {
+        model.CreatedBy = "teller: placeholder for teller name/id";
+        model.Description = $"Teller transaction of type ${model.Type}";
+        model.CreatedDate = DateTime.Now;
+        model.TransDateTime = DateTime.Now;
+        
         var transaction = _mapper.Map<Transaction>(model);
         _repository.Add(transaction);
 
@@ -34,16 +42,13 @@ namespace BankAPI.Controllers.Teller
         {
           return _mapper.Map<TransactionModel>(transaction);
         }
-        else
-        {
-          return BadRequest();
-        }
-        
       }
       catch(Exception e)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
+
+      return (BadRequest());
     }
 
   }

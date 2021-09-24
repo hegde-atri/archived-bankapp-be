@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace BankAPI.Controllers.Customer
 {
+  // This will be used to handle all the actions related to customer address
+  // This class responds to API calls related to addresses.
+  
   [ApiController]
   [Route("api/customer/[controller]")]
   public class AddressController: ControllerBase
@@ -41,10 +44,6 @@ namespace BankAPI.Controllers.Customer
         {
           return Created(location, _mapper.Map<AddressModel>(address));
         }
-        else
-        {
-          return BadRequest();
-        }
 
       }
       catch (Exception e)
@@ -52,6 +51,8 @@ namespace BankAPI.Controllers.Customer
         // _logger.LogWarning("Failed to port address with error: " + e);
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
+
+      return BadRequest();
     }
 
     [HttpGet("{addressId}")]
@@ -72,7 +73,7 @@ namespace BankAPI.Controllers.Customer
     [HttpGet("all")]
     public async Task<ActionResult<AddressModel[]>> Get(bool onlyActive = true)
     {
-      // TODO customerId must be taken from the client
+      // TODO customerId must be taken from authorisation API
       int customerId = 1;
       try
       {
@@ -92,7 +93,7 @@ namespace BankAPI.Controllers.Customer
       try
       {
         var old = await _repository.GetAddressAsync(addressId, onlyActive);
-        if (old == null) return BadRequest("old address not found");
+        if (old == null) return BadRequest("Address not found");
 
         _mapper.Map(model, old);
         old.AddressId = addressId;
