@@ -1,6 +1,6 @@
 ﻿namespace BankAPI.Controllers.Manager
 {
-  public class ManagerRepository
+  public class ManagerRepository:IManagerRepository
   {
     
   }

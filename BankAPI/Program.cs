@@ -17,6 +17,7 @@ namespace BankAPI
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
+            // Configures the 
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

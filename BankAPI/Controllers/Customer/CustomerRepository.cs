@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Bank.Data;
 using Bank.Data.Entities;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -105,12 +104,12 @@ namespace BankAPI.Controllers.Customer
       return await query.ToArrayAsync();
     }
 
-    public async Task<Notification> GetNotificationAsync(string type, int customerId, bool onlyActive)
+    public async Task<Notification> GetNotificationAsync(int notificationId, int customerId, bool onlyActive)
     {
-      _logger.LogInformation($"Getting notification details of customer {customerId} with type {type}.");
+      _logger.LogInformation($"Getting notification details of customer {customerId} with id {notificationId}.");
 
       IQueryable<Notification> query = _context.Notifications
-        .Where(n => n.Type == type && n.CustomerId == customerId);
+        .Where(n => n.NotificationId == notificationId && n.CustomerId == customerId);
 
       if (onlyActive)
       {
