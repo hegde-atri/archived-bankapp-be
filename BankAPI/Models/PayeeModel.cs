@@ -1,7 +1,20 @@
-﻿namespace BankAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
+
+namespace BankAPI.Models
 {
   public class PayeeModel
   {
+    public int PayeeId { get; set; }
+    public int CustomerId { get; set; }
     
+    [Required]
+    public string Name { get; set; }
+    [Required]
+    public string AccountNumber { get; set; }
+    [Required]
+    public string Sortcode { get; set; }
+
+    public string Description { get; set; }
   }
 }

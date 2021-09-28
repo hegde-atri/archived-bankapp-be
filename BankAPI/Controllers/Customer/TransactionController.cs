@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace BankAPI.Controllers.Customer
 {
+  //  TODO figure out how a customer transaction would translate to an API being called.
   [ApiController]
   [Route("api/customer/[controller]")]
   public class TransactionController : ControllerBase
@@ -44,13 +45,11 @@ namespace BankAPI.Controllers.Customer
     [HttpGet("all")]
     public async Task<ActionResult<TransactionModel[]>> Get(string accountNumber)
     {
-      /* TODO
-       we need to get get all the transaction related to an account.
-       */
       try
       {
-        // var results = 
-        return Ok();
+        var results = await _repository.GetAllTransactionsAsync(accountNumber);
+
+        return _mapper.Map<TransactionModel[]>(results);
       }
       catch (Exception e)
       {
