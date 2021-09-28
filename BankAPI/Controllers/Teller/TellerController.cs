@@ -26,10 +26,15 @@ namespace BankAPI.Controllers.Teller
     // withdrawing and depositing with only one account.
     
     [HttpPost]
-    public async Task<ActionResult<TransactionModel>> Post(TransactionModel model)
+    public async Task<ActionResult<TransactionModel>> Post()
     {
       try
       {
+        TransactionModel model = new TransactionModel();
+
+        model.AccountNumber = "4353245235";
+        model.Type = "credit";
+        model.Amount = (decimal)(8345.54);
         model.CreatedBy = "teller: placeholder for teller name/id";
         model.Description = $"Teller transaction of type ${model.Type}";
         model.CreatedDate = DateTime.Now;
