@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bank.Data.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20210726153203_changedFloatToDecimal")]
-    partial class changedFloatToDecimal
+    [Migration("20211005104815_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,9 +54,6 @@ namespace Bank.Data.Migrations
 
                     b.Property<DateTime>("OpenDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Sortcode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -246,6 +243,9 @@ namespace Bank.Data.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
@@ -257,12 +257,6 @@ namespace Bank.Data.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TransDateTime")
                         .HasColumnType("datetime2");
