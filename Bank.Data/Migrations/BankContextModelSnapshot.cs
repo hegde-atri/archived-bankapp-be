@@ -238,7 +238,7 @@ namespace Bank.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<string>("AccountNumber")
@@ -309,7 +309,9 @@ namespace Bank.Data.Migrations
                 {
                     b.HasOne("Bank.Data.Entities.Account", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Bank.Data.Entities.Account", b =>
