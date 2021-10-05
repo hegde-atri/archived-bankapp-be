@@ -1,4 +1,4 @@
-﻿namespace BankAPI.Controllers.Officer
+﻿namespace Bank.API.Controllers.Officer
 {
   public class OfficerRepository:IOfficerRepository
   {

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Bank.API.Models;
 using Bank.Data.Entities;
-using BankAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
 
 // This class will be used to retrieve/add/modify Payees as a customer
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   [ApiController]
   [Route("api/customer/[controller]")]

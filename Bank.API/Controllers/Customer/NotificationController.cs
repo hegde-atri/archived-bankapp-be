@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Bank.API.Models;
 using Bank.Data.Entities;
-using BankAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   [ApiController]
   [Route("api/customer/[controller]")]

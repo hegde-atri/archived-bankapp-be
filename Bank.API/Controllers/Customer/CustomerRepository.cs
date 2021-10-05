@@ -5,7 +5,7 @@ using Bank.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   /*The first set of methods with the T entity allow me to add any object to the database (as long as that object is defined in the database.)
    using `bool onlyActive = true` as my parameter i create a optional parameter which defaults to true when it is not passed in.

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bank.Data.Entities;
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   public interface ICustomerRepository
   {
