@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BankAPI.Models
+namespace Bank.API.Models
 {
   public class TransactionModel
   {

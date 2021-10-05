@@ -1,4 +1,4 @@
-﻿namespace BankAPI.Controllers.Manager
+﻿namespace Bank.API.Controllers.Manager
 {
   public interface IManagerRepository
   {

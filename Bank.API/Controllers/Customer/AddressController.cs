@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Bank.API.Models;
 using Bank.Data.Entities;
-using BankAPI.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   // This will be used to handle all the actions related to customer address
   // This class responds to API calls related to addresses.

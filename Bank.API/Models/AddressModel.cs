@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BankAPI.Models
+namespace Bank.API.Models
 {
   public class AddressModel
   {

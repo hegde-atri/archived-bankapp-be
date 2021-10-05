@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Bank.API.Models;
 using Bank.Data.Entities;
-using BankAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAPI.Controllers.Teller
+namespace Bank.API.Controllers.Teller
 {
   [ApiController]
   [Route("api/[controller]")]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Bank.Data.Entities;
 
-namespace BankAPI.Models
+namespace Bank.API.Models
 {
   public class AccountModel
   {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bank.Data.Entities;
 
-namespace BankAPI.Controllers.Teller
+namespace Bank.API.Controllers.Teller
 {
   public interface ITellerRepository
   {

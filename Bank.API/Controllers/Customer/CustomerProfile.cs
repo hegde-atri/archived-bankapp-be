@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Bank.API.Models;
 using Bank.Data.Entities;
-using BankAPI.Models;
 
-namespace BankAPI.Controllers.Customer
+namespace Bank.API.Controllers.Customer
 {
   public class CustomerProfile:Profile
   {

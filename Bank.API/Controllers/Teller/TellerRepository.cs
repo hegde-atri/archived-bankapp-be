@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Bank.API.Controllers.Customer;
 using Bank.Data;
-using Bank.Data.Entities;
-using BankAPI.Controllers.Customer;
 using Microsoft.Extensions.Logging;
 
-namespace BankAPI.Controllers.Teller
+namespace Bank.API.Controllers.Teller
 {
   /* This repository is an implementation of ITellerRepository
    All it needs to do is be able to add a transaction
