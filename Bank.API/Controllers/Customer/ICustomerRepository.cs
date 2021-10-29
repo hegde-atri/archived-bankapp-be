@@ -18,15 +18,15 @@ namespace Bank.API.Controllers.Customer
 
     // Regarding Accounts
     Task<Account> GetAccountAsync(int accountId);
-    Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive);
+    Task<Account[]> GetAllAccountsAsync(int customerId);
 
     // Regarding Addresses
-    Task<Address> GetAddressAsync(int addressId, bool onlyActive);
-    Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive);
+    Task<Address> GetAddressAsync(int addressId);
+    Task<Address[]> GetAllAddressesAsync(int customerId);
     
     // Regarding Notifications
-    Task<Notification> GetNotificationAsync(int notificationId, int customerId, bool onlyActive);
-    Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive);
+    Task<Notification> GetNotificationAsync(int notificationId, int customerId);
+    Task<Notification[]> GetAllNotificationsAsync(int customerId);
     
     // Regarding Payees
     Task<Payee> GetPayeeAsync(int payeeId);

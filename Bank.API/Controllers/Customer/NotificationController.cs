@@ -24,13 +24,13 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<NotificationModel>> Get(int notificationId, bool onlyActive)
+    [HttpGet("{notificationId}")]
+    public async Task<ActionResult<NotificationModel>> Get(int notificationId)
     {
       int customerId = 1;
       try
       {
-        var result = await _repository.GetNotificationAsync(notificationId, customerId, onlyActive);
+        var result = await _repository.GetNotificationAsync(notificationId, customerId);
         if (result == null) return BadRequest();
         return _mapper.Map<NotificationModel>(result);
       }
@@ -46,7 +46,7 @@ namespace Bank.API.Controllers.Customer
       int customerId = 1;
       try
       {
-        var results = await _repository.GetAllNotificationsAsync(customerId, onlyActive);
+        var results = await _repository.GetAllNotificationsAsync(customerId);
         return _mapper.Map<NotificationModel[]>(results);
       }
       catch (Exception e)
