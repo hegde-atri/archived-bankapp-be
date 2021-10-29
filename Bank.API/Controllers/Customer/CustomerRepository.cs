@@ -61,74 +61,51 @@ namespace Bank.API.Controllers.Customer
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<Account[]> GetAllAccountsAsync(int customerId, bool onlyActive)
+    public async Task<Account[]> GetAllAccountsAsync(int customerId)
     {
       _logger.LogInformation($"Getting all accounts of {customerId}");
       IQueryable<Account> query = _context.Accounts
         .Where(a => a.CustomerId == customerId);
 
-      if (onlyActive)
-      {
-        query = query.Where(a => a.Status == "active");
-      }
-
       return await query.ToArrayAsync();
     }
 
-    public async Task<Address> GetAddressAsync(int addressId, bool onlyActive)
+    public async Task<Address> GetAddressAsync(int addressId)
     {
       _logger.LogInformation($"Getting address with id {addressId}.");
 
       IQueryable<Address> query = _context.Addresses
         .Where(a => a.AddressId == addressId);
-      // This filers out any addresses which are not active
-      if (onlyActive)
-      {
-        query = query.Where(a => a.Status == "active");
-      }
+      
       return await query.FirstOrDefaultAsync();
 
     }
 
-    public async Task<Address[]> GetAllAddressesAsync(int customerId, bool onlyActive)
+    public async Task<Address[]> GetAllAddressesAsync(int customerId)
     {
       _logger.LogInformation($"Getting all address details of customer {customerId}.");
       IQueryable<Address> query = _context.Addresses
         .Where(a => a.CustomerId == customerId);
-      if (onlyActive)
-      {
-        query = query.Where(a => a.Status == "active");
-      }
-      
       // Turns the results of the query into an array.
       return await query.ToArrayAsync();
     }
 
-    public async Task<Notification> GetNotificationAsync(int notificationId, int customerId, bool onlyActive)
+    public async Task<Notification> GetNotificationAsync(int notificationId, int customerId)
     {
       _logger.LogInformation($"Getting notification details of customer {customerId} with id {notificationId}.");
 
       IQueryable<Notification> query = _context.Notifications
         .Where(n => n.NotificationId == notificationId && n.CustomerId == customerId);
 
-      if (onlyActive)
-      {
-        query = query.Where(c => c.Status == "active");
-      }
-
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<Notification[]> GetAllNotificationsAsync(int customerId, bool onlyActive)
+    public async Task<Notification[]> GetAllNotificationsAsync(int customerId)
     {
       _logger.LogInformation($"Getting notification details of customer {customerId}.");
 
       IQueryable<Notification> query = _context.Notifications
         .Where(n => n.CustomerId == customerId);
-      if (onlyActive)
-      {
-        query = query.Where(n => n.Status == "active");
-      }
 
       return await query.ToArrayAsync();
     }

@@ -59,7 +59,7 @@ namespace Bank.API.Controllers.Customer
     {
       try
       {
-        var result = await _repository.GetAddressAsync(addressId, onlyActive);
+        var result = await _repository.GetAddressAsync(addressId);
         if (result == null) return BadRequest();
         return _mapper.Map<AddressModel>(result);
       }
@@ -76,7 +76,7 @@ namespace Bank.API.Controllers.Customer
       int customerId = 1;
       try
       {
-        var results = await _repository.GetAllAddressesAsync(customerId, onlyActive);
+        var results = await _repository.GetAllAddressesAsync(customerId);
         
         return _mapper.Map<AddressModel[]>(results);
       }
@@ -91,7 +91,7 @@ namespace Bank.API.Controllers.Customer
     {
       try
       {
-        var old = await _repository.GetAddressAsync(addressId, onlyActive);
+        var old = await _repository.GetAddressAsync(addressId);
         if (old == null) return BadRequest("Address not found");
 
         _mapper.Map(model, old);

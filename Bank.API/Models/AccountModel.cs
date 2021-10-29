@@ -9,6 +9,9 @@ namespace Bank.API.Models
   {
     //These are the attributes of the Account entity.
     [Required]
+    public int AccountId { get; set; }
+    
+    [Required]
     public int CustomerId { get; set; }
     
     // This will be my surrogate key
