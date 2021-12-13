@@ -23,11 +23,13 @@ namespace Bank.API.Controllers.Customer
     public AddressController(ICustomerRepository repository, IMapper mapper, 
       LinkGenerator linkGenerator)
     {
+      // object instances we will be using in this class
       _repository = repository;
       _mapper = mapper;
       _linkGenerator = linkGenerator;
     }
 
+    // Http Post will take a model from user/frontend and add it to the database
     [HttpPost]
     public async Task<ActionResult<AddressModel>> Post(AddressModel model)
     {

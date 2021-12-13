@@ -5,25 +5,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Bank.API.Models
 {
   public class TransferModel
+  /*
+   * This is a data model that will serve as an intermediate class to store information
+   * retrieved from the front end
+   */
   {
+    public string AccountNumber1{ get; set; }
+    public string Description1 { get; set; }
+    public DateTime TransDateTime1 { get; set; }
+    public string Type1 { get; set; }
+    public string CreatedBy1 { get; set; }
+    // The 2 commented parameters will be set by the API.
     
-    [Required]
-    public string Account1AccountNumber { get; set; }
-    [Required]
-    public string Account1Type { get; set; }
-    public string Account1Description { get; set; }
-    public DateTime Account1TransDateTime { get; set; }
-    public string Account1CreatedBy { get; set; }
-    public DateTime Account1CreatedDate { get; set; }
+    // public DateTime CreatedDate1 { get; set; }
     
-    [Required]
-    public string Account2AccountNumber { get; set; }
-    [Required]
-    public string Account2Type { get; set; }
-    public string Account2Description { get; set; }
-    public DateTime Account2TransDateTime { get; set; }
-    public string Account2CreatedBy { get; set; }
-    public DateTime Account2CreatedDate { get; set; }
+    public string AccountNumber2 { get; set; }
+    public string Description2 { get; set; }
+    public DateTime TransDateTime2 { get; set; }
+    public string Type2 { get; set; }
+    public string CreatedBy2 { get; set; }
+    // public DateTime CreatedDate2 { get; set; }
+    
+    
 
     [Required]
     [Column(TypeName = "decimal(18,2)")]

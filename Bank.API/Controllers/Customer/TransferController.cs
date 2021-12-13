@@ -30,31 +30,36 @@ namespace Bank.API.Controllers.Customer
     {
       try
       {
-        //TODO figure out how to do these transactions that are interdependent on each other.
+        // TODO figure out how to do these transactions that are interdependent on each other.
         // A transfer created 2 transactions that take place, but we need to make sure that both of the transactions
         // must be successful!
-        TransactionModel transaction1 = new TransactionModel
+        TransactionModel transactionModel1 = new TransactionModel
         {
           Amount = model.Amount,
-          AccountNumber = model.Account1AccountNumber,
-          Type = model.Account1Type,
-          Description = model.Account1Description,
-          TransDateTime = model.Account1TransDateTime,
-          CreatedBy = model.Account1CreatedBy
-            
-        };
-
-
-        TransactionModel transaction2 = new TransactionModel
-        {
-          Amount = model.Amount,
-          AccountNumber = model.Account2AccountNumber,
-          Type = model.Account2Type,
-          Description = model.Account2Description,
-          TransDateTime = model.Account2TransDateTime,
-          CreatedBy = model.Account2CreatedBy
+          AccountNumber = model.AccountNumber1,
+          Type = model.Type1,
+          Description = model.Description1,
+          TransDateTime = DateTime.UtcNow,
+          CreatedBy = "User",
+          CreatedDate = DateTime.Today
         };
         
+        
+        TransactionModel transactionModel2 = new TransactionModel
+        {
+          Amount = model.Amount,
+          AccountNumber = model.AccountNumber2,
+          Type = model.Type2,
+          Description = model.Description2,
+          TransDateTime = DateTime.UtcNow,
+          CreatedBy = "User",
+          CreatedDate = DateTime.Today
+        };
+        
+        
+        var transaction1 = _mapper.Map<Transaction>(transactionModel1);
+        var transaction2 = _mapper.Map<Transaction>(transactionModel2);
+
         _repository.Add(transaction1);
         _repository.Add(transaction2);
 
