@@ -6,6 +6,7 @@ using Bank.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Transaction = System.Transactions.Transaction;
 
 namespace Bank.API.Controllers.Customer
 {
@@ -25,6 +26,8 @@ namespace Bank.API.Controllers.Customer
       _mapper = mapper;
       _linkGenerator = linkGenerator;
     }
+    
+    //TODO get only where customerID is matching
 
     [HttpGet("{transactionId}")]
     public async Task<ActionResult<TransactionModel>> Get(int transactionId)
@@ -55,6 +58,28 @@ namespace Bank.API.Controllers.Customer
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<TransactionModel>> Post(TransactionModel model)
+    {
+      try
+      {
+        var location = _linkGenerator.GetPathByAction("Get", "Transaction", new { model.TransactionId });
+        if (string.IsNullOrWhiteSpace(location)) return BadRequest();
+        var transaction = _mapper.Map<Transaction>(model);
+        _repository.Add(transaction);
+        if (await _repository.SaveChangesAsync())
+        {
+          return Created(location, _mapper.Map<TransactionModel>(transaction));
+        }
+      }
+      catch (Exception e)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
+      }
+
+      return BadRequest();
     }
 
 

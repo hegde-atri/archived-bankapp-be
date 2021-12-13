@@ -19,10 +19,10 @@ namespace Bank.API.Controllers.Customer
         .ForMember(a => a.AddressId, opt => opt.Ignore());
         // .ForMember(a => a.CustomerId, opt => opt.Ignore());
 
-      this.CreateMap<Transaction, TransactionModel>()
-        .ReverseMap()
-        .ForMember(a => a.TransactionId, opt => opt.Ignore())
-        .ForMember(a => a.AccountNumber, opt => opt.Ignore());
+        this.CreateMap<Transaction, TransactionModel>()
+          .ReverseMap()
+          .ForMember(a => a.TransactionId, opt => opt.Ignore());
+        // .ForMember(a => a.AccountNumber, opt => opt.Ignore());
       
       this.CreateMap<Notification, NotificationModel>()
         .ReverseMap()
