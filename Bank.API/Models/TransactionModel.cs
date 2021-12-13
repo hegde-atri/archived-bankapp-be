@@ -8,6 +8,8 @@ namespace Bank.API.Models
   {
     public int TransactionId { get; set; }
     [Required]
+    public int AccountId { get; set; }
+    [Required]
     public string AccountNumber { get; set; }
     [Required]
     public string Type { get; set; }

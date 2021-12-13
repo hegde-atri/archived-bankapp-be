@@ -6,7 +6,6 @@ using Bank.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Transaction = System.Transactions.Transaction;
 
 namespace Bank.API.Controllers.Customer
 {
@@ -67,6 +66,7 @@ namespace Bank.API.Controllers.Customer
       {
         var location = _linkGenerator.GetPathByAction("Get", "Transaction", new { model.TransactionId });
         if (string.IsNullOrWhiteSpace(location)) return BadRequest();
+        model.AccountId = 1;
         var transaction = _mapper.Map<Transaction>(model);
         _repository.Add(transaction);
         if (await _repository.SaveChangesAsync())

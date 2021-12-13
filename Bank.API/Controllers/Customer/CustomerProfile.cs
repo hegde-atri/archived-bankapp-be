@@ -23,6 +23,9 @@ namespace Bank.API.Controllers.Customer
           .ReverseMap()
           .ForMember(a => a.TransactionId, opt => opt.Ignore());
         // .ForMember(a => a.AccountNumber, opt => opt.Ignore());
+        // this.CreateMap<TransactionModel, Transaction>()
+        //   .ReverseMap()
+        //   .ForMember(a => a.TransactionId, opt => opt.Ignore());
       
       this.CreateMap<Notification, NotificationModel>()
         .ReverseMap()
