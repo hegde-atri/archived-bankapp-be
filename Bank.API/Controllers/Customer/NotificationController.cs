@@ -24,35 +24,31 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{notificationId}")]
-    public async Task<ActionResult<NotificationModel>> Get(int notificationId)
-    {
-      int customerId = 1;
-      try
-      {
-        var result = await _repository.GetNotificationAsync(notificationId, customerId);
-        if (result == null) return BadRequest();
-        return _mapper.Map<NotificationModel>(result);
-      }
-      catch (Exception e)
-      {
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
-    }
-
     [HttpGet]
-    public async Task<ActionResult<NotificationModel[]>> Get(bool onlyActive)
+    public async Task<ActionResult<NotificationModel[]>> Get(CustomerRequest model)
     {
-      int customerId = 1;
       try
       {
-        var results = await _repository.GetAllNotificationsAsync(customerId);
-        return _mapper.Map<NotificationModel[]>(results);
+        if (model.CustomerId != 0)
+        {
+          var results = await _repository.GetAllNotificationsAsync(model.CustomerId);
+          return _mapper.Map<NotificationModel[]>(results);
+        }
+        else if (model.NotificationId[0] != 0)
+        {
+          // You can get only the first address back.
+          var result = new Notification[]{await _repository.GetNotificationAsync(model.NotificationId[0])};
+          if (result == null) return BadRequest();
+          return _mapper.Map<NotificationModel[]>(result);
+        }
+        
       }
       catch (Exception e)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
+
+      return BadRequest();
     }
 
 

@@ -36,6 +36,7 @@ namespace Bank.API.Controllers.Customer
         TransactionModel transactionModel1 = new TransactionModel
         {
           Amount = model.Amount,
+          AccountId = 1,
           AccountNumber = model.AccountNumber1,
           Type = model.Type1,
           Description = model.Description1,
@@ -48,6 +49,7 @@ namespace Bank.API.Controllers.Customer
         TransactionModel transactionModel2 = new TransactionModel
         {
           Amount = model.Amount,
+          AccountId = 2,
           AccountNumber = model.AccountNumber2,
           Type = model.Type2,
           Description = model.Description2,
@@ -57,11 +59,16 @@ namespace Bank.API.Controllers.Customer
         };
         
         
+        // lets make the required transaction statements
         var transaction1 = _mapper.Map<Transaction>(transactionModel1);
         var transaction2 = _mapper.Map<Transaction>(transactionModel2);
-
+        // now lets update the corresponding account balances
+        var account1 = await _repository.GetAccountByNumberAsync(model.AccountNumber1);
+        var account2 = await _repository.GetAccountByNumberAsync(model.AccountNumber2);
+        
         _repository.Add(transaction1);
         _repository.Add(transaction2);
+        
 
         if (await _repository.SaveChangesAsync()) return Ok();
 

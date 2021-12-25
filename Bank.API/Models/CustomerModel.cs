@@ -46,15 +46,5 @@ namespace Bank.API.Models
     [Required]
     [MaxLength(50)]
     public string ModifiedBy { get; set; }
-    
-
-    //These define the Customer's relation with other Tables.
-    public ICollection<Account> Accounts { get; set; }
-    
-    public ICollection<Payee> Payees { get; set; }
-    
-    public ICollection<Address> Addresses { get; set; }
-    
-    public ICollection<Notification> Notifications { get; set; }
   }
 }

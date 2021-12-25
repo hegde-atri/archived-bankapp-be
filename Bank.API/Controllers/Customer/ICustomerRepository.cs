@@ -18,6 +18,7 @@ namespace Bank.API.Controllers.Customer
 
     // Regarding Accounts
     Task<Account> GetAccountAsync(int accountId);
+    Task<Account> GetAccountByNumberAsync(string accountNumber);
     Task<Account[]> GetAllAccountsAsync(int customerId);
 
     // Regarding Addresses
@@ -25,7 +26,7 @@ namespace Bank.API.Controllers.Customer
     Task<Address[]> GetAllAddressesAsync(int customerId);
     
     // Regarding Notifications
-    Task<Notification> GetNotificationAsync(int notificationId, int customerId);
+    Task<Notification> GetNotificationAsync(int notificationId);
     Task<Notification[]> GetAllNotificationsAsync(int customerId);
     
     // Regarding Payees
@@ -35,6 +36,11 @@ namespace Bank.API.Controllers.Customer
     // Regarding Transactions
     Task<Transaction> GetTransactionAsync(int transactionId);
     Task<Transaction[]> GetAllTransactionsAsync(string accountNumber);
+    
+    //Regarding Customer Details
+    Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(int customerId);
+
+    
 
   }
 }

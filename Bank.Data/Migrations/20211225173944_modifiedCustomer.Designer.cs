@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bank.Data.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20211005104815_initial")]
-    partial class initial
+    [Migration("20211225173944_modifiedCustomer")]
+    partial class modifiedCustomer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,6 +137,9 @@ namespace Bank.Data.Migrations
                     b.Property<DateTime>("DoB")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
@@ -221,9 +224,6 @@ namespace Bank.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sortcode")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PayeeId");
