@@ -5,6 +5,8 @@ namespace Bank.Data.Entities
 {
   public class Transaction
   {
+    //here although i am using using a transaction type =, i.e. either credit or debit
+    //I will still keep the amount a signed integer to make it easier to update the balance of an account
     public int TransactionId { get; set; }
     public int AccountId { get; set; }
     public string AccountNumber { get; set; }

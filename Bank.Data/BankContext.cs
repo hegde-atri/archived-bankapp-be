@@ -1,7 +1,9 @@
 ﻿using System.Dynamic;
 using System.Linq;
 using Bank.Data.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Bank.Data
 {
@@ -18,12 +20,14 @@ namespace Bank.Data
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Payee> Payees { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        
+        public IConfiguration Configuration { get; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Here we choose our data source.
+        {    // Here we choose our data source.
+
             optionsBuilder.UseSqlServer(
-                "Data Source= (localdb)\\MSSQLLocalDB; Initial Catalog=BankAppDb");
+                "Data Source= sql-banking-app.database.windows.net; Initial Catalog=sqldb-banking-app; User ID=sqladmin; Password=''");
             base.OnConfiguring(optionsBuilder);
         }
 

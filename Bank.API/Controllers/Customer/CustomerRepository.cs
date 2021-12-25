@@ -61,6 +61,15 @@ namespace Bank.API.Controllers.Customer
       return await query.FirstOrDefaultAsync();
     }
 
+    public async Task<Account> GetAccountByNumberAsync(string accountNumber)
+    {
+      _logger.LogInformation($"Finding account account number: {accountNumber}");
+      IQueryable<Account> query = _context.Accounts
+        .Where(a => a.AccountNumber == accountNumber);
+
+      return await query.FirstOrDefaultAsync();
+    }
+
     public async Task<Account[]> GetAllAccountsAsync(int customerId)
     {
       _logger.LogInformation($"Getting all accounts of {customerId}");

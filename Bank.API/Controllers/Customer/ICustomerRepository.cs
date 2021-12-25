@@ -18,6 +18,7 @@ namespace Bank.API.Controllers.Customer
 
     // Regarding Accounts
     Task<Account> GetAccountAsync(int accountId);
+    Task<Account> GetAccountByNumberAsync(string accountNumber);
     Task<Account[]> GetAllAccountsAsync(int customerId);
 
     // Regarding Addresses

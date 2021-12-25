@@ -18,9 +18,11 @@ namespace Bank.API.Models
     public string City { get; set; }
     [Required]
     public string State { get; set; }
+    // You cannot create an account without living in the UK.
     [Required]
     public string Country { get; set; } = "United Kingdom";
     
+    // Regular expression to make sure post code is valid.
     [Required]
     [RegularExpression(@"^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([AZa-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))[0-9][A-Za-z]{2})$")]
     public string Postcode { get; set; }
