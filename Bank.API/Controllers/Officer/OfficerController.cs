@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
 using Bank.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -12,7 +10,6 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Officer
 {
-  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("/api/officer")]
   public class OfficerController: ControllerBase
@@ -25,10 +22,9 @@ namespace Bank.API.Controllers.Officer
     }
 
     [HttpGet]
-    public async Task<ActionResult> Get()
+    public async Task<ActionResult<String>> Get()
     {
-      // return StatusCode(StatusCodes.Status200OK, "method reached");
-      return new JsonResult("METHOD REACHED");
+      return StatusCode(StatusCodes.Status200OK, "method reached");
     }
   }
 }
