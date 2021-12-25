@@ -25,8 +25,6 @@ namespace Bank.API.Controllers.Customer
       _mapper = mapper;
       _linkGenerator = linkGenerator;
     }
-    
-    //TODO get only where customerID is matching
 
     [HttpGet("{transactionId}")]
     public async Task<ActionResult<TransactionModel>> Get(int transactionId)
@@ -58,8 +56,17 @@ namespace Bank.API.Controllers.Customer
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
     }
+    
+    
+    //  !! METHOD DEPRECATED IN FAVOUR OF THE TRANSFER CONTROLLER CLASS !!
 
-    [HttpPost]
+    /*
+     * Post method for a transaction is where I spent quite a lot of time on.
+     * I have decided to just update the account balance everytime a transaction post method is called.
+     */
+    
+    
+    /*[HttpPost]
     public async Task<ActionResult<TransactionModel>> Post(TransactionModel model)
     {
       try
@@ -67,8 +74,11 @@ namespace Bank.API.Controllers.Customer
         var location = _linkGenerator.GetPathByAction("Get", "Transaction", new { model.TransactionId });
         if (string.IsNullOrWhiteSpace(location)) return BadRequest();
         model.AccountId = 1;
+        // we have created the transaction item to be added
         var transaction = _mapper.Map<Transaction>(model);
+        // now lets update the corresponding account balance
         _repository.Add(transaction);
+        
         if (await _repository.SaveChangesAsync())
         {
           return Created(location, _mapper.Map<TransactionModel>(transaction));
@@ -80,7 +90,7 @@ namespace Bank.API.Controllers.Customer
       }
 
       return BadRequest();
-    }
+    }*/
 
 
 
