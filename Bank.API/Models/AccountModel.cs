@@ -36,7 +36,6 @@ namespace Bank.API.Models
     [Required]
     public DateTime OpenDate { get; set; }
 
-    [Required]
     public DateTime CloseDate { get; set; }
     
     [Required]

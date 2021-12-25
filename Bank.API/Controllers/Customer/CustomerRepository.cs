@@ -99,12 +99,12 @@ namespace Bank.API.Controllers.Customer
       return await query.ToArrayAsync();
     }
 
-    public async Task<Notification> GetNotificationAsync(int notificationId, int customerId)
+    public async Task<Notification> GetNotificationAsync(int notificationId)
     {
-      _logger.LogInformation($"Getting notification details of customer {customerId} with id {notificationId}.");
+      _logger.LogInformation($"Getting notification details of notification with id {notificationId}.");
 
       IQueryable<Notification> query = _context.Notifications
-        .Where(n => n.NotificationId == notificationId && n.CustomerId == customerId);
+        .Where(n => n.NotificationId == notificationId);
 
       return await query.FirstOrDefaultAsync();
     }
@@ -153,6 +153,16 @@ namespace Bank.API.Controllers.Customer
         .Where(t => t.AccountNumber == accountNumber);
 
       return await query.ToArrayAsync();
+    }
+
+    public async Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(int customerId)
+    {
+      //For some reason I had to provide entire path for customer class since the namespace wasn't working
+      _logger.LogInformation($"Getting details on customer with id {customerId}");
+      IQueryable<Bank.Data.Entities.Customer> query = _context.Customers
+        .Where(c => c.CustomerId == customerId);
+
+      return await query.FirstOrDefaultAsync();
     }
   }
 }
