@@ -33,6 +33,16 @@ namespace Bank.API.Controllers.Customer
         .ReverseMap()
         .ForMember(a => a.PayeeId, opt => opt.Ignore())
         .ForMember(a => a.CustomerId, opt => opt.Ignore());
+
+      this.CreateMap<Data.Entities.Customer, CustomerModel>()
+        .ReverseMap()
+        .ForMember(a => a.Accounts, opt => opt.Ignore())
+        .ForMember(a => a.Payees, opt => opt.Ignore())
+        .ForMember(a => a.Addresses, opt => opt.Ignore())
+        .ForMember(a => a.Notifications, opt => opt.Ignore());
+
+
+
     }
   }
 }

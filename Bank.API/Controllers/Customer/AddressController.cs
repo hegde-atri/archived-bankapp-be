@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
@@ -6,6 +7,7 @@ using Bank.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.VisualBasic;
 
 namespace Bank.API.Controllers.Customer
 {
@@ -56,36 +58,48 @@ namespace Bank.API.Controllers.Customer
       return BadRequest();
     }
 
-    [HttpGet("{addressId}")]
-    public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
-    {
-      try
-      {
-        var result = await _repository.GetAddressAsync(addressId);
-        if (result == null) return BadRequest();
-        return _mapper.Map<AddressModel>(result);
-      }
-      catch (Exception e)
-      {
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
-    }
+    // !! METHOD DEPRECATED IN FAVOUR OF CustomerRequest MODEL !!
+    
+    // [HttpGet("{addressId}")]
+    // public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
+    // {
+    //   try
+    //   {
+    //     var result = await _repository.GetAddressAsync(addressId);
+    //     if (result == null) return BadRequest();
+    //     return _mapper.Map<AddressModel>(result);
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return StatusCode(StatusCodes.Status500InternalServerError, e);
+    //   }
+    // }
 
-    [HttpGet("all")]
-    public async Task<ActionResult<AddressModel[]>> Get(bool onlyActive = true)
+    [HttpGet]
+    public async Task<ActionResult<AddressModel[]>> Get(CustomerRequest model)
     {
-      // TODO customerId must be taken from authorisation API
-      int customerId = 1;
       try
       {
-        var results = await _repository.GetAllAddressesAsync(customerId);
+        if (model.CustomerId != 0)
+        {
+          var results = await _repository.GetAllAddressesAsync(model.CustomerId);
+          return _mapper.Map<AddressModel[]>(results);
+        }
+        else if (model.AddressId[0] != 0)
+        {
+          // You can get only the first address back.
+          var result = new Address[]{await _repository.GetAddressAsync(model.AddressId[0])};
+          if (result == null) return BadRequest();
+          return _mapper.Map<AddressModel[]>(result);
+        }
         
-        return _mapper.Map<AddressModel[]>(results);
       }
       catch (Exception e)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
+
+      return BadRequest();
     }
 
     [HttpPut("{addressId}")]

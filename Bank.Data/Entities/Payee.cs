@@ -9,7 +9,6 @@
     // The name will be our surrogate key
     public string Name { get; set; }
     public string AccountNumber { get; set; }
-    public string Sortcode { get; set; }
     public string Description { get; set; }
     
   }
