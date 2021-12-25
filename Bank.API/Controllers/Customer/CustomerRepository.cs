@@ -155,12 +155,12 @@ namespace Bank.API.Controllers.Customer
       return await query.ToArrayAsync();
     }
 
-    public async Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(string customerEmail)
+    public async Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(int customerId)
     {
       //For some reason I had to provide entire path for customer class since the namespace wasn't working
-      _logger.LogInformation($"Getting details on customer with email {customerEmail}");
+      _logger.LogInformation($"Getting details on customer with id {customerId}");
       IQueryable<Bank.Data.Entities.Customer> query = _context.Customers
-        .Where(c => c.Email ==  customerEmail);
+        .Where(c => c.CustomerId == customerId);
 
       return await query.FirstOrDefaultAsync();
     }

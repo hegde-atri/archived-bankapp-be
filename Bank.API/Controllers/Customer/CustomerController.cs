@@ -2,14 +2,12 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Customer
 {
-  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class CustomerController : ControllerBase
@@ -25,12 +23,12 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{customerEmail}")]
-    public async Task<ActionResult<CustomerModel>> Get(string customerEmail)
+    [HttpGet("{customerId}")]
+    public async Task<ActionResult<CustomerModel>> Get(int customerId)
     {
       try
       {
-        var result = await _repository.GetCustomerByIdAsync(customerEmail);
+        var result = await _repository.GetCustomerByIdAsync(customerId);
         if (result == null) return BadRequest();
         return _mapper.Map<CustomerModel>(result);
       }

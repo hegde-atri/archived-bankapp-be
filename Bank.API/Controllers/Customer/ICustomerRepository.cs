@@ -38,7 +38,7 @@ namespace Bank.API.Controllers.Customer
     Task<Transaction[]> GetAllTransactionsAsync(string accountNumber);
     
     //Regarding Customer Details
-    Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(string customerEmail);
+    Task<Bank.Data.Entities.Customer> GetCustomerByIdAsync(int customerId);
 
     
 

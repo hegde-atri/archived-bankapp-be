@@ -10,5 +10,7 @@ namespace Bank.API.Controllers.Customer
     public int[] NotificationId { get; set; }
     public int[] PayeeId { get; set; }
     public int[] TransactionId { get; set;}
+    
+    
   }
 }
