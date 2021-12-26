@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Data.Entities
 {
@@ -11,10 +10,8 @@ namespace Bank.Data.Entities
     //Each account belongs to a single customer. [CustomerId is a foreign key]
     public int CustomerId { get; set; }
     public string AccountNumber { get; set; }
-    // Sort Code has been omitted for now as we will have only one branch, not requiring a sort code.
-    // public string Sortcode { get; set; }
+    public string Sortcode { get; set; }
     public string Type { get; set; }
-    [Column(TypeName = "decimal(18,2)")]
     public decimal Balance { get; set; }
     public string Status { get; set; }
     public DateTime OpenDate { get; set; }

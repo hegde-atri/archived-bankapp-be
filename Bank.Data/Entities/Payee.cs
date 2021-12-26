@@ -6,9 +6,9 @@
     public int PayeeId { get; set; }
     //Each account belongs to a single customer. [CustomerId is a foreign key]
     public int CustomerId { get; set; }
-    // The name will be our surrogate key
     public string Name { get; set; }
     public string AccountNumber { get; set; }
+    public string Sortcode { get; set; }
     public string Description { get; set; }
     
   }
