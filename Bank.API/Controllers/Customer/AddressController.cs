@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
 using Bank.Data.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -13,7 +14,7 @@ namespace Bank.API.Controllers.Customer
 {
   // This will be used to handle all the actions related to customer address
   // This class responds to API calls related to addresses.
-  
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class AddressController: ControllerBase

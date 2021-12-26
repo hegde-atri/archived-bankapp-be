@@ -14,6 +14,9 @@ namespace Bank.API.Controllers.Customer
       // Bank.Data/Entities/Account.cs is an entity
       // BankAPI/Models/AccountModel.cs is a entityModel
 
+      this.CreateMap<Account, AccountModel>()
+        .ReverseMap();
+
       this.CreateMap<Address, AddressModel>()
         .ReverseMap()
         .ForMember(a => a.AddressId, opt => opt.Ignore());
