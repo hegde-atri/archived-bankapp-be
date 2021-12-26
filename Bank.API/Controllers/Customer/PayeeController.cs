@@ -28,24 +28,22 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<PayeeModel[]>> Get(CustomerRequest model)
+    [HttpGet("{customerId}/{addressId}")]
+    public async Task<ActionResult<PayeeModel[]>> Get(int customerId, int payeeId)
     {
       try
       {
-        if (model.CustomerId != 0)
+        if (customerId != 0)
         {
-          var results = await _repository.GetAllPayeesAsync(model.CustomerId);
+          var results = await _repository.GetAllPayeesAsync(customerId);
           return _mapper.Map<PayeeModel[]>(results);
         }
-        else if (model.PayeeId[0] != 0)
+        else if (payeeId != 0)
         {
-          // You can get only the first address back.
-          var result = new Payee[]{await _repository.GetPayeeAsync(model.PayeeId[0])};
+          var result = new Payee[]{await _repository.GetPayeeAsync(payeeId)};
           if (result == null) return BadRequest();
           return _mapper.Map<PayeeModel[]>(result);
         }
-        
       }
       catch (Exception e)
       {
@@ -80,15 +78,13 @@ namespace Bank.API.Controllers.Customer
     {
       try
       {
-        var location = _linkGenerator.GetPathByAction("Get", "Payee",
-          new {model.PayeeId});
 
-        if (string.IsNullOrWhiteSpace(location)) return BadRequest();
+        if (model?.CustomerId < 1) return BadRequest();
         var payee = _mapper.Map<Payee>(model);
         _repository.Add(payee);
         if (await _repository.SaveChangesAsync())
         {
-          return Created(location, _mapper.Map<PayeeModel>(payee));
+          return Created("", _mapper.Map<PayeeModel>(payee));
         }
       }
       catch (Exception e)
@@ -99,7 +95,7 @@ namespace Bank.API.Controllers.Customer
       return BadRequest();
     }
     
-    [HttpDelete]
+    [HttpDelete("{payeeId}")]
     public async Task<ActionResult<PayeeModel>> Delete(int payeeId)
     {
       try

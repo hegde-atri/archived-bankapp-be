@@ -18,24 +18,24 @@ namespace Bank.API.Controllers.Customer
         .ReverseMap();
 
       this.CreateMap<Address, AddressModel>()
-        .ReverseMap()
-        .ForMember(a => a.AddressId, opt => opt.Ignore());
+        .ReverseMap();
+        // .ForMember(a => a.AddressId, opt => opt.Ignore());
         // .ForMember(a => a.CustomerId, opt => opt.Ignore());
 
         this.CreateMap<Transaction, TransactionModel>()
           .ReverseMap()
           .ForMember(a => a.TransactionId, opt => opt.Ignore());
         // .ForMember(a => a.AccountNumber, opt => opt.Ignore());
-      
-      this.CreateMap<Notification, NotificationModel>()
-        .ReverseMap()
-        .ForMember(a => a.NotificationId, opt => opt.Ignore())
-        .ForMember(a => a.CustomerId, opt => opt.Ignore());
 
-      this.CreateMap<Payee, PayeeModel>()
-        .ReverseMap()
-        .ForMember(a => a.PayeeId, opt => opt.Ignore())
-        .ForMember(a => a.CustomerId, opt => opt.Ignore());
+        this.CreateMap<Notification, NotificationModel>()
+          .ReverseMap()
+          .ForMember(a => a.NotificationId, opt => opt.Ignore());
+        //.ForMember(a => a.CustomerId, opt => opt.Ignore());
+
+        this.CreateMap<Payee, PayeeModel>()
+          .ReverseMap();
+        // .ForMember(a => a.PayeeId, opt => opt.Ignore())
+        // .ForMember(a => a.CustomerId, opt => opt.Ignore());
 
       this.CreateMap<Data.Entities.Customer, CustomerModel>()
         .ReverseMap()

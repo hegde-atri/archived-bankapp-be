@@ -27,7 +27,7 @@ namespace Bank.Data
         {    // Here we choose our data source.
 
             optionsBuilder.UseSqlServer(
-                "Data Source= sql-banking-app.database.windows.net; Initial Catalog=sqldb-banking-app; User ID=sqladmin; Password=");
+                "Data Source= sql-banking-app.database.windows.net; Initial Catalog=sqldb-banking-app; User ID=sqladmin; Password=5cba28b9-752d-44fb-900f-b2a7928c103b");
             base.OnConfiguring(optionsBuilder);
         }
 

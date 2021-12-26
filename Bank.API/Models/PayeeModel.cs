@@ -12,8 +12,6 @@ namespace Bank.API.Models
     public string Name { get; set; }
     [Required]
     public string AccountNumber { get; set; }
-    [Required]
-    public string Sortcode { get; set; }
 
     public string Description { get; set; }
   }

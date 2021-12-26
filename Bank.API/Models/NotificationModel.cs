@@ -21,6 +21,9 @@ namespace Bank.API.Models
     public string Preference { get; set; }
     
     [Required]
+    public string Type { get; set; }
+    
+    [Required]
     public string Status { get; set; }
     
     [Required]

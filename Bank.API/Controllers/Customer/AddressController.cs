@@ -59,7 +59,7 @@ namespace Bank.API.Controllers.Customer
       return BadRequest();
     }
 
-    // !! METHOD DEPRECATED IN FAVOUR OF CustomerRequest MODEL !!
+    // !! METHOD DEPRECATED IN FAVOUR OF customerId/addressId MODEL !!
     
     // [HttpGet("{addressId}")]
     // public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
@@ -76,20 +76,19 @@ namespace Bank.API.Controllers.Customer
     //   }
     // }
 
-    [HttpGet]
-    public async Task<ActionResult<AddressModel[]>> Get(CustomerRequest model)
+    [HttpGet("{customerId}/{addressId}")]
+    public async Task<ActionResult<AddressModel[]>> Get(int customerId, int addressId)
     {
       try
       {
-        if (model.CustomerId != 0)
+        if (customerId != 0)
         {
-          var results = await _repository.GetAllAddressesAsync(model.CustomerId);
+          var results = await _repository.GetAllAddressesAsync(customerId);
           return _mapper.Map<AddressModel[]>(results);
         }
-        else if (model.AddressId[0] != 0)
+        else if (addressId != 0)
         {
-          // You can get only the first address back.
-          var result = new Address[]{await _repository.GetAddressAsync(model.AddressId[0])};
+          var result = new Address[]{await _repository.GetAddressAsync(addressId)};
           if (result == null) return BadRequest();
           return _mapper.Map<AddressModel[]>(result);
         }
@@ -104,7 +103,7 @@ namespace Bank.API.Controllers.Customer
     }
 
     [HttpPut("{addressId}")]
-    public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model, bool onlyActive)
+    public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model)
     {
       try
       {
