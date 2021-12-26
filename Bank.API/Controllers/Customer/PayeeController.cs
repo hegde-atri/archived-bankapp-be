@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
 using Bank.Data.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Customer
 {
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class PayeeController : ControllerBase
@@ -26,36 +28,31 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{payeeId}")]
-    public async Task<ActionResult<PayeeModel>> Get(int payeeId)
+    [HttpGet]
+    public async Task<ActionResult<PayeeModel[]>> Get(CustomerRequest model)
     {
       try
       {
-        var result = await _repository.GetPayeeAsync(payeeId);
-        if (result == null) return BadRequest();
-        return _mapper.Map<PayeeModel>(result);
+        if (model.CustomerId != 0)
+        {
+          var results = await _repository.GetAllPayeesAsync(model.CustomerId);
+          return _mapper.Map<PayeeModel[]>(results);
+        }
+        else if (model.PayeeId[0] != 0)
+        {
+          // You can get only the first address back.
+          var result = new Payee[]{await _repository.GetPayeeAsync(model.PayeeId[0])};
+          if (result == null) return BadRequest();
+          return _mapper.Map<PayeeModel[]>(result);
+        }
+        
       }
       catch (Exception e)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
-    }
 
-    [HttpGet("all")]
-    public async Task<ActionResult<PayeeModel[]>> Get()
-    {
-      // TODO customer ID 
-      var customerId = 1;
-      try
-      {
-        var results = await _repository.GetAllPayeesAsync(customerId);
-
-        return _mapper.Map<PayeeModel[]>(results);
-      }
-      catch (Exception e)
-      {
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
+      return BadRequest();
     }
 
     [HttpPut("payeeId")]

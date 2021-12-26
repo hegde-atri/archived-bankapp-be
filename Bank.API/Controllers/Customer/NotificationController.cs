@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
 using Bank.Data.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Customer
 {
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class NotificationController: ControllerBase
