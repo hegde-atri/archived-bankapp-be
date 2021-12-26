@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using System.Transactions;
 using AutoMapper;
 using Bank.API.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Customer
 {
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class TransferController: ControllerBase

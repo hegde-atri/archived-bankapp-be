@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
 using Bank.Data.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Routing;
 namespace Bank.API.Controllers.Customer
 {
   //  TODO figure out how a customer transaction would translate to an API being called.
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("api/customer/[controller]")]
   public class TransactionController : ControllerBase
@@ -26,35 +28,31 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{transactionId}")]
-    public async Task<ActionResult<TransactionModel>> Get(int transactionId)
+    [HttpGet]
+    public async Task<ActionResult<TransactionModel[]>> Get(CustomerRequest model)
     {
       try
       {
-        var result = await _repository.GetTransactionAsync(transactionId);
-        if (result == null) return BadRequest();
-
-        return _mapper.Map<TransactionModel>(result);
+        if (model.CustomerId != 0)
+        {
+          var results = await _repository.GetAllAccountsAsync(model.CustomerId);
+          return _mapper.Map<TransactionModel[]>(results);
+        }
+        else if (model.TransactionId[0] != 0)
+        {
+          // You can get only the first address back.
+          var result = new Transaction[]{await _repository.GetTransactionAsync(model.TransactionId[0])};
+          if (result == null) return BadRequest();
+          return _mapper.Map<TransactionModel[]>(result);
+        }
+        
       }
       catch (Exception e)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, e);
       }
-    }
 
-    [HttpGet("all")]
-    public async Task<ActionResult<TransactionModel[]>> Get(string accountNumber)
-    {
-      try
-      {
-        var results = await _repository.GetAllTransactionsAsync(accountNumber);
-
-        return _mapper.Map<TransactionModel[]>(results);
-      }
-      catch (Exception e)
-      {
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
+      return BadRequest();
     }
     
     

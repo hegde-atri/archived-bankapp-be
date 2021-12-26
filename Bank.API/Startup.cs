@@ -37,8 +37,7 @@ namespace Bank.API
                 options.AddPolicy("_myAllowSpecificOrigins",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200",
-                            "http://localhost:6600");
+                        builder.WithOrigins("http://localhost:4200");
                     });
             });
 
