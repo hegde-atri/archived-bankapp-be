@@ -23,12 +23,12 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{customerId}")]
-    public async Task<ActionResult<CustomerModel>> Get(int customerId)
+    [HttpGet("{customerEmail}")]
+    public async Task<ActionResult<CustomerModel>> Get(string customerEmail)
     {
       try
       {
-        var result = await _repository.GetCustomerByIdAsync(customerId);
+        var result = await _repository.GetCustomerAsync(customerEmail);
         if (result == null) return BadRequest();
         return _mapper.Map<CustomerModel>(result);
       }

@@ -28,20 +28,19 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<TransactionModel[]>> Get(CustomerRequest model)
+    [HttpGet("{customerId}/{transactionId}")]
+    public async Task<ActionResult<TransactionModel[]>> Get(int customerId, int transactionId)
     {
       try
       {
-        if (model.CustomerId != 0)
+        if (customerId != 0)
         {
-          var results = await _repository.GetAllAccountsAsync(model.CustomerId);
+          var results = await _repository.GetAllAccountsAsync(customerId);
           return _mapper.Map<TransactionModel[]>(results);
         }
-        else if (model.TransactionId[0] != 0)
+        else if (transactionId != 0)
         {
-          // You can get only the first address back.
-          var result = new Transaction[]{await _repository.GetTransactionAsync(model.TransactionId[0])};
+          var result = new Transaction[]{await _repository.GetTransactionAsync(transactionId)};
           if (result == null) return BadRequest();
           return _mapper.Map<TransactionModel[]>(result);
         }

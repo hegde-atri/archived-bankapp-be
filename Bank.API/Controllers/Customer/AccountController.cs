@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Bank.API.Models;
+using Bank.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -25,24 +26,33 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    // [HttpGet]
-    // public async Task<ActionResult<AccountModel>> Get(CustomerRequest model)
-    // {
-    //   try
-    //   {
-    //     if (model.CustomerId != null)
-    //     {
-    //     }
-    //     else if (model.AccountId != null)
-    //     {
-    //       
-    //     }
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     StatusCode(StatusCodes.Status500InternalServerError, e);
-    //   }
-    // }
+    [HttpPost]
+    public async Task<ActionResult<AccountModel[]>> Post(CustomerRequest model)
+    {
+      try
+      {
+        if (model == null) return BadRequest();
+        if (model.CustomerId != 0)
+        {
+          var results = await _repository.GetAllAccountsAsync(model.CustomerId);
+          return _mapper.Map<AccountModel[]>(results);
+        }
+        else if (model.AccountId[0] != 0)
+        {
+          // You can get only the first address back.
+          var result = new Account[]{await _repository.GetAccountAsync(model.AccountId[0])};
+          if (result == null) return BadRequest();
+          return new JsonResult(_mapper.Map<AccountModel[]>(result));
+        }
+        
+      }
+      catch (Exception e)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
+      }
+
+      return BadRequest();
+    }
 
 
   }

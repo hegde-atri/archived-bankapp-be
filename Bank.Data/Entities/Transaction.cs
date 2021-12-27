@@ -9,6 +9,7 @@ namespace Bank.Data.Entities
     //I will still keep the amount a signed integer to make it easier to update the balance of an account
     public int TransactionId { get; set; }
     public int AccountId { get; set; }
+    public string AccountNumber { get; set; }
     public string Type { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public decimal Amount{ get; set; }

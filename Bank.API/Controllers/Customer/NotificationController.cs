@@ -83,7 +83,7 @@ namespace Bank.API.Controllers.Customer
       try
       {
         var old = await _repository.GetNotificationAsync(notificationId);
-        if (old == null) return BadRequest("Address not found!");
+        if (old == null) return BadRequest("notification not found!");
 
         _mapper.Map(model, old);
         old.NotificationId = notificationId;

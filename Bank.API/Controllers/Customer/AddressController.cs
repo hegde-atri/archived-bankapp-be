@@ -32,50 +32,6 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    // Http Post will take a model from user/frontend and add it to the database
-    [HttpPost]
-    public async Task<ActionResult<AddressModel>> Post(AddressModel model)
-    {
-      try
-      {
-        var location = _linkGenerator.GetPathByAction("Get", "Address", 
-          new {model.AddressId});
-        
-        if (string.IsNullOrWhiteSpace(location)) return BadRequest();
-        var address = _mapper.Map<Address>(model);
-        _repository.Add(address);
-        if (await _repository.SaveChangesAsync())
-        {
-          return Created(location, _mapper.Map<AddressModel>(address));
-        }
-
-      }
-      catch (Exception e)
-      {
-        // _logger.LogWarning("Failed to port address with error: " + e);
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
-
-      return BadRequest();
-    }
-
-    // !! METHOD DEPRECATED IN FAVOUR OF customerId/addressId MODEL !!
-    
-    // [HttpGet("{addressId}")]
-    // public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
-    // {
-    //   try
-    //   {
-    //     var result = await _repository.GetAddressAsync(addressId);
-    //     if (result == null) return BadRequest();
-    //     return _mapper.Map<AddressModel>(result);
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return StatusCode(StatusCodes.Status500InternalServerError, e);
-    //   }
-    // }
-
     [HttpGet("{customerId}/{addressId}")]
     public async Task<ActionResult<AddressModel[]>> Get(int customerId, int addressId)
     {
@@ -101,26 +57,75 @@ namespace Bank.API.Controllers.Customer
 
       return BadRequest();
     }
+    
+    
+    
+    // USER CANNOT MODIFY ADDRESS
+    // [HttpPost]
+    // public async Task<ActionResult<AddressModel>> Post(AddressModel model)
+    // {
+    //   try
+    //   {
+    //     var location = _linkGenerator.GetPathByAction("Get", "Address", 
+    //       new {model.AddressId});
+    //     
+    //     if (string.IsNullOrWhiteSpace(location)) return BadRequest();
+    //     var address = _mapper.Map<Address>(model);
+    //     _repository.Add(address);
+    //     if (await _repository.SaveChangesAsync())
+    //     {
+    //       return Created(location, _mapper.Map<AddressModel>(address));
+    //     }
+    //
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     // _logger.LogWarning("Failed to port address with error: " + e);
+    //     return StatusCode(StatusCodes.Status500InternalServerError, e);
+    //   }
+    //
+    //   return BadRequest();
+    // }
 
-    [HttpPut("{addressId}")]
-    public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model)
-    {
-      try
-      {
-        var old = await _repository.GetAddressAsync(addressId);
-        if (old == null) return BadRequest("Address not found");
+    // !! METHOD DEPRECATED IN FAVOUR OF customerId/addressId MODEL !!
+    
+    // [HttpGet("{addressId}")]
+    // public async Task<ActionResult<AddressModel>> Get(int addressId, bool onlyActive = true)
+    // {
+    //   try
+    //   {
+    //     var result = await _repository.GetAddressAsync(addressId);
+    //     if (result == null) return BadRequest();
+    //     return _mapper.Map<AddressModel>(result);
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return StatusCode(StatusCodes.Status500InternalServerError, e);
+    //   }
+    // }
 
-        _mapper.Map(model, old);
-        old.AddressId = addressId;
-        if (await _repository.SaveChangesAsync()) return _mapper.Map<AddressModel>(old);
+    
 
-      }
-      catch (Exception e)
-      {
-        return StatusCode(StatusCodes.Status500InternalServerError, e);
-      }
-
-      return BadRequest();
-    }
+    // USER CANNOT CHANGE ADDRESS
+    // [HttpPut("{addressId}")]
+    // public async Task<ActionResult<AddressModel>> Put(int addressId, AddressModel model)
+    // {
+    //   try
+    //   {
+    //     var old = await _repository.GetAddressAsync(addressId);
+    //     if (old == null) return BadRequest("Address not found");
+    //
+    //     _mapper.Map(model, old);
+    //     old.AddressId = addressId;
+    //     if (await _repository.SaveChangesAsync()) return _mapper.Map<AddressModel>(old);
+    //
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return StatusCode(StatusCodes.Status500InternalServerError, e);
+    //   }
+    //
+    //   return BadRequest();
+    // }
   }
 }
