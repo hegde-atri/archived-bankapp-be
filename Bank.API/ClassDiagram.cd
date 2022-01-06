@@ -10,14 +10,14 @@
   <Class Name="Bank.API.Startup">
     <Position X="10.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
       <FileName>Startup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Controllers.Customer.AddressController">
     <Position X="4.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAABAAABAAAABAAAACAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAIAAAABAAABAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\Customer\AddressController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +31,7 @@
   <Class Name="Bank.API.Controllers.Customer.CustomerRepository" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAYAAAABACAABEAABAAAABAAKIEAAAYAgAEAAAAAAAA=</HashCode>
+      <HashCode>AAYgAAABACAABEAABAAAABAAKIEAAAYAggEAAAAAAAA=</HashCode>
       <FileName>Controllers\Customer\CustomerRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -39,7 +39,7 @@
   <Class Name="Bank.API.Controllers.Customer.NotificationController">
     <Position X="2.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAABAAABAAAABAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAABAAABAAAABAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Controllers\Customer\NotificationController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -51,7 +51,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Controllers.Customer.TransactionController">
-    <Position X="2.5" Y="3.25" Width="1.75" />
+    <Position X="2.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAABAAABAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\Customer\TransactionController.cs</FileName>
@@ -65,7 +65,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Controllers.Manager.ManagerRepository" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="12" Width="1.75" />
+    <Position X="2.5" Y="9.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\Manager\ManagerRepository.cs</FileName>
@@ -73,31 +73,31 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Bank.API.Controllers.Officer.OfficerController">
-    <Position X="0.5" Y="9.75" Width="1.5" />
+    <Position X="2.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\Officer\OfficerController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Controllers.Officer.OfficerRepository" BaseTypeListCollapsed="true">
-    <Position X="2.5" Y="9.75" Width="1.5" />
+    <Position X="4.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\Officer\OfficerRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Bank.API.Controllers.Teller.TellerController">
+  <Class Name="Bank.API.Controllers.Teller.AccountController">
     <Position X="2.25" Y="14.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAAAAABAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Controllers\Teller\TellerController.cs</FileName>
+      <HashCode>AAAAAAAAAABAAABAAAABAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Teller\AccountController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Controllers.Teller.TellerRepository" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="14.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAABEAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAABEAAAAAAAAAAIAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Controllers\Teller\TellerRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -112,42 +112,42 @@
   <Class Name="Bank.API.Models.AddressModel">
     <Position X="11" Y="14" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAACAAEAAAAAAAIAAAAgAAAAgIAABAgAgAARAAAAAE=</HashCode>
+      <HashCode>QAAACAAEAAAAAAAIAAAAgAAAAgIAABAgAwAARAAAAAE=</HashCode>
       <FileName>Models\AddressModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Models.CustomerModel">
     <Position X="12.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAhACEAEAAAgAACIAAAAAAAACgAAABCAAgAAAAAAAAE=</HashCode>
+      <HashCode>AAAACEAEAAAAAACIAAAAAAAACgAAABAAAgAAAAAAgAE=</HashCode>
       <FileName>Models\CustomerModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Models.NotificationModel">
     <Position X="14.5" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAACAAEACAAAAAAAAAAAAIAAgAAABCAAgAAIAAAAAE=</HashCode>
+      <HashCode>AAAACAAEACAAAAAAAAAAAAIAAgAAABCAAwAAIAAAAAE=</HashCode>
       <FileName>Models\NotificationModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Models.PayeeModel">
     <Position X="12.75" Y="15" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAgAAAQAQAAAgAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAgAAAAAQAAAgAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\PayeeModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Models.TransactionModel">
     <Position X="11" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAACAAAACAAAgAEAAAAwAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAiAAAACAAAgAEAAAAwAAAAAAAAE=</HashCode>
       <FileName>Models\TransactionModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank.API.Models.TransferModel">
     <Position X="16.5" Y="11.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>ADEAAAAAAACAAAQAAQAAgACAAAgBAAAAhAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAEAAAAAiAMAEAAAgAACAAAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Models\TransferModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -184,9 +184,9 @@
     <TypeIdentifier />
   </Class>
   <Interface Name="Bank.API.Controllers.Customer.ICustomerRepository">
-    <Position X="0.5" Y="5.25" Width="1.75" />
+    <Position X="0.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAYAAAABACAAAEAABAAAABAACIEAAAYAgAEAAAAAAAA=</HashCode>
+      <HashCode>AAYgAAABACAAAEAABAAAABAACIEAAAYAggEAAAAAAAA=</HashCode>
       <FileName>Controllers\Customer\ICustomerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -198,16 +198,16 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bank.API.Controllers.Officer.IOfficerRepository">
-    <Position X="0.5" Y="10.75" Width="1.75" />
+    <Position X="2.5" Y="7.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Controllers\Officer\IOfficerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bank.API.Controllers.Teller.ITellerRepository">
-    <Position X="0.5" Y="16.75" Width="1.5" />
+    <Position X="0.5" Y="17" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Controllers\Teller\ITellerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>

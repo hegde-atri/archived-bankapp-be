@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bank.Data.Entities
@@ -13,9 +14,12 @@ namespace Bank.Data.Entities
     public string Type { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public decimal Amount{ get; set; }
+    [MaxLength(250)]
     public string Description { get; set; }
     public DateTime TransDateTime { get; set; }
     public string CreatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
-  }
+    public string Sortcode { get; set; }
+
+    }
 }

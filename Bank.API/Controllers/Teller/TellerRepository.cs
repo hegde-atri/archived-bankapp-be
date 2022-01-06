@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Bank.API.Controllers.Customer;
 using Bank.Data;
+using Bank.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Bank.API.Controllers.Teller
@@ -39,5 +43,15 @@ namespace Bank.API.Controllers.Teller
       // The change is tracked by the DbContext of entity framework
       return (await _context.SaveChangesAsync()) > 0;
     }
+
+    public async Task<Account> GetAccountByNumberAsync(string accountNo)
+    {
+      _logger.LogInformation($"Finding account with account number: {accountNo}");
+      IQueryable<Account> query = _context.Accounts
+        .Where(a => a.AccountNumber == accountNo);
+      
+      return await query.FirstOrDefaultAsync();
+    }
+    
   }
 }

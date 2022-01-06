@@ -46,5 +46,8 @@ namespace Bank.API.Models
     [Required]
     [MaxLength(50)]
     public string ModifiedBy { get; set; }
+
+    [Required]
+    public int Budget { get; set; }
   }
 }

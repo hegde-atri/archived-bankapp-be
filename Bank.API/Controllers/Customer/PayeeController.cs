@@ -28,7 +28,7 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{customerId}/{addressId}")]
+    [HttpGet("{customerId}/{payeeId}")]
     public async Task<ActionResult<PayeeModel[]>> Get(int customerId, int payeeId)
     {
       try
@@ -53,7 +53,7 @@ namespace Bank.API.Controllers.Customer
       return BadRequest();
     }
 
-    [HttpPut("payeeId")]
+    [HttpPut("{payeeId}")]
     public async Task<ActionResult<PayeeModel>> Put(int payeeId, PayeeModel model)
     {
       try
@@ -78,7 +78,6 @@ namespace Bank.API.Controllers.Customer
     {
       try
       {
-
         if (model?.CustomerId < 1) return BadRequest();
         var payee = _mapper.Map<Payee>(model);
         _repository.Add(payee);

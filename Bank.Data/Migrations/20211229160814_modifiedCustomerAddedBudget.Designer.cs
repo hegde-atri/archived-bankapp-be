@@ -4,14 +4,16 @@ using Bank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bank.Data.Migrations
 {
     [DbContext(typeof(BankContext))]
-    partial class BankContextModelSnapshot : ModelSnapshot
+    [Migration("20211229160814_modifiedCustomerAddedBudget")]
+    partial class modifiedCustomerAddedBudget
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,9 +232,6 @@ namespace Bank.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Sortcode")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("PayeeId");
 
                     b.HasIndex("CustomerId");
@@ -263,9 +262,6 @@ namespace Bank.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sortcode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TransDateTime")

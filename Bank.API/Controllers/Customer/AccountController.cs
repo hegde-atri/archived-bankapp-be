@@ -26,6 +26,8 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
+    // This post doesnt create a new account, since a customer should not be able to do that,
+    // Instead is a user-defined, complex algorithm that is used to retrieve account/s
     [HttpPost]
     public async Task<ActionResult<AccountModel[]>> Post(CustomerRequest model)
     {
@@ -54,6 +56,23 @@ namespace Bank.API.Controllers.Customer
       return BadRequest();
     }
 
+    [HttpGet("{accountNo}")]
+    public async Task<ActionResult<bool>> Get(string accountNo)
+    {
+      try
+      {
+        if (accountNo == null) return BadRequest();
+        if (accountNo.Length != 16) return BadRequest();
+
+        var result = await _repository.GetAccountByNumberAsync(accountNo);
+        if (result == null) return false;
+        return true;
+      }
+      catch (Exception e)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, e);
+      }
+    }
 
   }
 }

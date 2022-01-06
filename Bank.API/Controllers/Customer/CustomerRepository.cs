@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bank.API.Controllers.Customer
 {
+  // Some of these methods has server side sorting added to them after ".Where()"
   /*The first set of methods with the T entity allow me to add any object to the database (as long as that object is defined in the database.)
    using `bool onlyActive = true` as my parameter i create a optional parameter which defaults to true when it is not passed in.
    
@@ -74,7 +75,9 @@ namespace Bank.API.Controllers.Customer
     {
       _logger.LogInformation($"Getting all accounts of {customerId}");
       IQueryable<Account> query = _context.Accounts
-        .Where(a => a.CustomerId == customerId);
+        .Where(a => a.CustomerId == customerId)
+        // Server side sorting
+        .OrderBy(a => a.AccountId);
 
       return await query.ToArrayAsync();
     }
@@ -154,6 +157,13 @@ namespace Bank.API.Controllers.Customer
 
       return await query.ToArrayAsync();
     }
+
+    //public async Task<Transaction[]> GetAllTransactionsByAccountId(int accountId)
+    //    {
+    //        _logger.LogInformation($"Getting all the transaction for accoundId  {accountId}");
+    //        IQueryable<Transaction> query = _context.Transactions
+    //            .Where(t => t.AccountId == accountId);
+    //    }
 
     public async Task<Bank.Data.Entities.Customer> GetCustomerAsync(string customerEmail)
     {

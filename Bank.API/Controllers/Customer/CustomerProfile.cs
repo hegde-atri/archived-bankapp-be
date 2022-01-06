@@ -13,7 +13,13 @@ namespace Bank.API.Controllers.Customer
       // That is what opt ignore does. 
       // Bank.Data/Entities/Account.cs is an entity
       // BankAPI/Models/AccountModel.cs is a entityModel
-
+      
+      this.CreateMap<Data.Entities.Customer, CustomerModel>()
+              .ReverseMap()
+              .ForMember(a => a.Accounts, opt => opt.Ignore())
+              .ForMember(a => a.Payees, opt => opt.Ignore())
+              .ForMember(a => a.Addresses, opt => opt.Ignore())
+              .ForMember(a => a.Notifications, opt => opt.Ignore());
       this.CreateMap<Account, AccountModel>()
         .ReverseMap();
 
@@ -33,19 +39,14 @@ namespace Bank.API.Controllers.Customer
           .ReverseMap()
           .ForMember(a => a.NotificationId, opt => opt.Ignore());
 
-        
+
         this.CreateMap<Payee, PayeeModel>()
-          .ReverseMap()
+          .ReverseMap();
         // .ForMember(a => a.PayeeId, opt => opt.Ignore())
-        .ForMember(a => a.CustomerId, opt => opt.Ignore());
+        // .ForMember(a => a.CustomerId, opt => opt.Ignore());
 
         
-      this.CreateMap<Data.Entities.Customer, CustomerModel>()
-        .ReverseMap()
-        .ForMember(a => a.Accounts, opt => opt.Ignore())
-        .ForMember(a => a.Payees, opt => opt.Ignore())
-        .ForMember(a => a.Addresses, opt => opt.Ignore())
-        .ForMember(a => a.Notifications, opt => opt.Ignore());
+      
 
 
 

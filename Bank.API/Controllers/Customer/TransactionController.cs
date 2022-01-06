@@ -28,14 +28,14 @@ namespace Bank.API.Controllers.Customer
       _linkGenerator = linkGenerator;
     }
 
-    [HttpGet("{customerId}/{transactionId}")]
-    public async Task<ActionResult<TransactionModel[]>> Get(int customerId, int transactionId)
+    [HttpGet("{accountNumber}/{transactionId}")]
+    public async Task<ActionResult<TransactionModel[]>> Get(string accountNumber, int transactionId)
     {
       try
       {
-        if (customerId != 0)
+        if (accountNumber.Length == 16)
         {
-          var results = await _repository.GetAllAccountsAsync(customerId);
+          var results = await _repository.GetAllTransactionsAsync(accountNumber);
           return _mapper.Map<TransactionModel[]>(results);
         }
         else if (transactionId != 0)

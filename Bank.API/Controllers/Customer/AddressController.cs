@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.VisualBasic;
 
 namespace Bank.API.Controllers.Customer
 {
@@ -46,7 +45,7 @@ namespace Bank.API.Controllers.Customer
         {
           var result = new Address[]{await _repository.GetAddressAsync(addressId)};
           if (result == null) return BadRequest();
-          return _mapper.Map<AddressModel[]>(result);
+          return  _mapper.Map<AddressModel[]>(result);
         }
         
       }

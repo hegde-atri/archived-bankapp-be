@@ -12,8 +12,8 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Bank.API.Controllers.Officer
 {
-  [EnableCors("_myAllowSpecificOrigins")]
   [Authorize]
+  [EnableCors("_myAllowSpecificOrigins")]
   [ApiController]
   [Route("/api/officer")]
   public class OfficerController: ControllerBase
