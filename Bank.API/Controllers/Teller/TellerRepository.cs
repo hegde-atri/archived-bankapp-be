@@ -18,9 +18,9 @@ namespace Bank.API.Controllers.Teller
   public class TellerRepository: ITellerRepository
   {
     private readonly BankContext _context;
-    private readonly ILogger<CustomerRepository> _logger;
+    private readonly ILogger<TellerRepository> _logger;
 
-    public TellerRepository(BankContext context, ILogger<CustomerRepository> logger)
+    public TellerRepository(BankContext context, ILogger<TellerRepository> logger)
     {
       _context = context;
       _logger = logger;
